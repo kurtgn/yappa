@@ -1,5 +1,7 @@
 # Yappa: Serverless Python for Yandex Cloud Functions
 
+<img src="ycf_logo.jpg" width="300" height="300">
+
 ## About
 
 Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/services/functions) like a boss.
