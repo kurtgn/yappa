@@ -150,4 +150,4 @@ The rest is just adapters for YCF quirks.
 
 ## If this does not work
 
-This is a quick and dirty project that was only tested on Mac OS. If it does not run on Windows/Linux - PRs are welcome.
+The project is in its early stages, and it was only tested on Mac OS. If it does not run on Windows/Linux - PRs are welcome.
