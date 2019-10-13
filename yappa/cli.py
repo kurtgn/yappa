@@ -4,7 +4,7 @@ import subprocess
 
 import click
 
-from . import init, deploy
+from . import init, deploy, undeploy
 
 YAPPA_SETTINGS_FILE = 'yappa_settings.json'
 
@@ -52,11 +52,38 @@ def deploy_cmd():
     )
 
 
+@cli.command(name='logs')
+@click.option('--since')
+@click.option('--until')
+def logs_cmd(since, until):
+    with open(YAPPA_SETTINGS_FILE) as f:
+        config = json.load(f)
+
+    function_name = config['project_name']
+    cmd = f'yc serverless function logs {function_name}'
+
+    if since:
+        cmd += f' --since={since}'
+
+    if until:
+        cmd += f' --until={until}'
+
+    subprocess.check_call(cmd.split())
+
+
 @cli.command(name='update')
 def update_cmd():
     with open(YAPPA_SETTINGS_FILE) as f:
         config = json.load(f)
     deploy.do_upload(config)
+
+
+@cli.command(name='undeploy')
+def undeploy_cmd():
+    with open(YAPPA_SETTINGS_FILE) as f:
+        config = json.load(f)
+
+    undeploy.yc_delete_function(config['project_name'])
 
 
 @cli.command(name='init')

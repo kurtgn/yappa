@@ -15,6 +15,7 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
     - [Create an app](#3-create-an-app)
     - [Generate requirements](#4-generate-requirements)
     - [Deploy](#5-deploy)
+- [Logs](#logs)
 - [Limitations](#limitations)
     - [Only one route](#only-one-route)
 - [Running without Flask](#running-without-flask)
@@ -77,6 +78,23 @@ After first deploy, you can update your function with:
  
 ```
 yappa update
+```
+
+
+## Logs
+
+Just run: 
+
+```
+yappa logs
+```
+
+You can use `--since` and `--until` flags ([syntax here](https://cloud.yandex.ru/docs/functions/operations/function/function-logs)). 
+For example, to display logs for the last minute:
+
+```
+yappa logs --since 1m
+
 ```
 
 

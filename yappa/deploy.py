@@ -1,16 +1,12 @@
 import logging
+import os
+import shutil
 import subprocess
 import sys
 from contextlib import suppress
 
 import boto3
-
-import os
-import shutil
-import os
-import shutil
 from botocore.session import Session as BotocoreSession
-from botocore.exceptions import ClientError
 
 logger = logging.getLogger(__name__)
 
