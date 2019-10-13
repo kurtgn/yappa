@@ -1,11 +1,11 @@
 # Yappa: Serverless Python for Yandex Cloud Functions
 
-<img src="ycf_logo.jpg" width="300" height="300">
-
-## About
-
 Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/services/functions) like a boss.
 
+<img src="ycf_logo.jpg" width="300" height="300">
+
+
+## Demo
 
 ![](demo.gif)
 
@@ -146,7 +146,10 @@ In this case, point your `entrypoint` in `yappa-settings.json` to this handler, 
 
 ## Credits
 
-Much of the code is ~~stolen from~~ inspired by the awesome [Zappa](https://github.com/Miserlou/Zappa) project and [Flask-Lambda](https://github.com/techjacker/flask-lambda) package.
+Much of the code is ~~stolen from~~ inspired 
+by the [Flask-Lambda](https://github.com/techjacker/flask-lambda) package 
+and the awesome [Zappa](https://github.com/Miserlou/Zappa) project (hence the weird name **yappa**).
+
 The rest is just adapters for YCF quirks.
 
 
