@@ -100,6 +100,9 @@ yappa logs --since 1m
 
 ## Limitations
 
+### Yandex quotes and limitations
+You cannot have more than 10 functions in one cloud. [More info here](https://cloud.yandex.ru/docs/functions/concepts/limits)
+
 ### Only one route
 
 Because Yandex Cloud Functions do not have the concept of URL routes,
