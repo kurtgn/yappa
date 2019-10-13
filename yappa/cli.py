@@ -40,6 +40,7 @@ def deploy_cmd():
     subprocess.check_call(cmd.split(' '))
 
     deploy.do_upload(config)
+    deploy.yc_get_function_info(function_name)
 
     click.echo(
         click.style('SUCCESS: ', fg='green', bold=True)
@@ -50,6 +51,15 @@ def deploy_cmd():
         + click.style('yappa update', fg="yellow", bold=True)
         + '.'
     )
+
+
+@cli.command(name='status')
+def status_cmd():
+    with open(YAPPA_SETTINGS_FILE) as f:
+        config = json.load(f)
+
+    function_name = config["project_name"]
+    deploy.yc_get_function_info(function_name)
 
 
 @cli.command(name='logs')
@@ -76,6 +86,8 @@ def update_cmd():
     with open(YAPPA_SETTINGS_FILE) as f:
         config = json.load(f)
     deploy.do_upload(config)
+    function_name = config['project_name']
+    deploy.yc_get_function_info(function_name)
 
 
 @cli.command(name='undeploy')

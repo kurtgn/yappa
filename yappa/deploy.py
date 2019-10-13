@@ -60,6 +60,11 @@ def install_requirements(requirements_file, temp_folder_name):
     subprocess.check_call(cmd.split())
 
 
+def yc_get_function_info(function_name):
+    cmd = f'yc serverless function get --name={function_name}'
+    subprocess.check_call(cmd.split())
+
+
 def yc_create_function_version(
     bucket_name, bucket_key, entrypoint, runtime, function_name
 ):
@@ -75,8 +80,7 @@ def yc_create_function_version(
     )
     subprocess.check_call(cmd.split())
 
-    cmd = f'yc serverless function get --name={function_name}'
-    subprocess.check_call(cmd.split())
+
 
 
 def do_upload(config):
@@ -110,7 +114,3 @@ def do_upload(config):
         with suppress(FileNotFoundError):
             os.remove(f'{temp_folder_name}.zip')
 
-
-if __name__ == '__main__':
-    copy_source_code(os.path.join(os.getcwd(), 'packaged'))
-    # ensure_bucket('xxxxx', 'yandex')
