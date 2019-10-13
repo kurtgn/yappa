@@ -14,7 +14,7 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
     - 3. Create an app
     - 4. Generate requirements
     - 5. Deploy
-- [Limitations](##limitations)
+- [Limitations](#limitations)
     - Only one route
 - Running without Flask
 
