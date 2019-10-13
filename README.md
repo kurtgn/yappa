@@ -20,6 +20,9 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
     - [Yandex quotes and limitations](#yandex-quotes-and-limitations)
     - [Only one route](#only-one-route)
 - [Running without Flask](#running-without-flask)
+- [Undeploying](#undeploying)
+- [Credits](#credits)
+- [If this does not work](#if-this-does-not-work)
 
 
 ## Usage
@@ -165,6 +168,14 @@ In this case, point your `entrypoint` in `yappa-settings.json` to this handler, 
 
 ```
 
+## Undeploying
+
+Just run:
+```
+yappa undeploy
+```
+
+and your cloud function will be deleted from YCF.
 
 ## Credits
 
