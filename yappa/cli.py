@@ -11,7 +11,7 @@ YAPPA_SETTINGS_FILE = 'yappa_settings.json'
 
 @click.group()
 def cli():
-    click.echo('Starting yappa...')
+    pass
 
 
 @cli.command(name='deploy')
