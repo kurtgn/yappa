@@ -84,15 +84,15 @@ yappa update
 
 ### Only one route
 
-Because Yandex Cloud Functions do not have the concept of URL routies,
-Your Flask app can only have one route:
+Because Yandex Cloud Functions do not have the concept of URL routes,
+Your Flask app can only have **one route**:
 
 ```python
 @app.route('/', methods=[...])
 
 ```
 
-and all the routing should be done with GET parameters:
+and all the routing should be done with **GET parameters**:
 
 
 ```python
