@@ -140,3 +140,14 @@ In this case, point your `entrypoint` in `yappa-settings.json` to this handler, 
 
 
 ```
+
+
+## Credits
+
+Much of the code is ~~stolen from~~ inspired by the awesome [Zappa](https://github.com/Miserlou/Zappa) project and [Flask-Lambda](https://github.com/techjacker/flask-lambda) package.
+The rest is just adapters for YCF quirks.
+
+
+## If this does not work
+
+This is a quick and dirty project that was only tested on Mac OS. If it does not run on Windows/Linux - PRs are welcome.
