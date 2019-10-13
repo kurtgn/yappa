@@ -17,6 +17,7 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
     - [Deploy](#5-deploy)
 - [Logs](#logs)
 - [Limitations](#limitations)
+    - [Yandex quotes and limitations](#yandex-quotes-and-limitations)
     - [Only one route](#only-one-route)
 - [Running without Flask](#running-without-flask)
 
