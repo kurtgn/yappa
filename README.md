@@ -8,6 +8,17 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
 ![](demo.gif)
 
 
+- Usage
+    - 1. Configure CLIs
+    - 2. Install yappa & flask
+    - 3. Create an app
+    - 4. Generate requirements
+    - 5. Deploy
+- [Limitations](##limitations)
+    - Only one route
+- Running without Flask
+
+
 ## Usage
 
 
@@ -121,7 +132,7 @@ def handler(event, context):
 
 In this case, point your `entrypoint` in `yappa-settings.json` to this handler, for example:
 
-```json
+```
 {
     "project_name": "messageboard-yandex2",
     "entrypoint": "myapp.handler",
