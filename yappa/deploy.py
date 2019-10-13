@@ -52,7 +52,7 @@ def copy_source_code(temp_folder_name):
 
 
 def install_requirements(requirements_file, temp_folder_name):
-    logger.warning('installing requrements...')
+    logger.warning('Installing requirements...')
     cmd = (
         f'{sys.executable} -m pip install '
         f'-r {requirements_file} -t {temp_folder_name} --upgrade --quiet'
