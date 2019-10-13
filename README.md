@@ -18,7 +18,7 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
 - [Logs](#logs)
 - [Limitations](#limitations)
     - [Yandex quotes and limitations](#yandex-quotes-and-limitations)
-    - [Only one route](#only-one-route)
+    - [Only one Flask route](#only-one-flask-route)
 - [Running without Flask](#running-without-flask)
 - [Undeploying](#undeploying)
 - [Credits](#credits)
@@ -107,7 +107,7 @@ yappa logs --since 1m
 ### Yandex quotes and limitations
 You cannot have more than 10 functions in one cloud. [More info here](https://cloud.yandex.ru/docs/functions/concepts/limits)
 
-### Only one route
+### Only one Flask route
 
 Because Yandex Cloud Functions do not have the concept of URL routes,
 Your Flask app can only have **one route**:
