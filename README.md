@@ -110,7 +110,7 @@ def main:
 
 ## Running without Flask
 
-Your app doesn't have to be a Flask app. 
+Your app **doesn't have to be a Flask app!**
 Yappa can deploy plain python handlers as per [YCF docs](https://cloud.yandex.ru/docs/functions/quickstart/function-quickstart#python-func):
 
 ```python
