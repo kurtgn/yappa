@@ -7,16 +7,15 @@ Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/servi
 
 ![](demo.gif)
 
-
-- Usage
-    - 1. Configure CLIs
-    - 2. Install yappa & flask
-    - 3. Create an app
-    - 4. Generate requirements
-    - 5. Deploy
+- [Usage](#usage)
+    - [Configure CLIs](1-configure-clis)
+    - [Install yappa & flask](2-install-yappa--flask)
+    - [Create an app](3-create-an-app)
+    - [Generate requirements](4-generate-requirements)
+    - [Deploy](5-deploy)
 - [Limitations](#limitations)
-    - Only one route
-- Running without Flask
+    - [Only one route](#only-one-route)
+- [Running without Flask](#running-without-flask)
 
 
 ## Usage
