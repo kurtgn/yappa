@@ -98,7 +98,7 @@ yappa update
 yappa logs
 ```
 
-Команда принимает два необязательных параметра `--since` и `--until` ([синтаксис см. здесь](https://cloud.yandex.ru/docs/functions/operations/function/function-logs)). 
+Команда принимает два необязательных параметра `--since` и `--until` (синтаксис [см. здесь](https://cloud.yandex.ru/docs/functions/operations/function/function-logs)). 
 Например, так можно просмотреть логи за последнюю минуту:
 
 ```
@@ -120,7 +120,7 @@ yappa undeploy
 ## Ограничения
 
 ### Ограничения Яндекса
-В одном облаке не может быть более 10 функций. ([Подробности здесь](https://cloud.yandex.ru/docs/functions/concepts/limits))
+В одном облаке не может быть более 10 функций. Все ограничения [см. здесь](https://cloud.yandex.ru/docs/functions/concepts/limits)
 
 ### Только один роут Flask
 
