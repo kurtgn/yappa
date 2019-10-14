@@ -1,40 +1,37 @@
 # Yappa: Serverless Python for Yandex Cloud Functions
 
-Deploy your Flask apps to [Yandex Cloud Functions](https://cloud.yandex.ru/services/functions) like a boss.
+Деплоим Python в [Yandex Cloud Functions](https://cloud.yandex.ru/services/functions) легко и быстро.
 
 <img src="ycf_logo.jpg" width="300" height="300">
 
 
-## Demo
+## Демо
 
 ![](demo.gif)
 
-- [Usage](#usage)
-    - [Configure CLIs](#1-configure-clis)
-    - [Install yappa & flask](#2-install-yappa--flask)
-    - [Create an app](#3-create-an-app)
-    - [Generate requirements](#4-generate-requirements)
-    - [Deploy](#5-deploy)
-- [Logs](#logs)
-- [Limitations](#limitations)
-    - [Yandex quotes and limitations](#yandex-quotes-and-limitations)
-    - [Only one Flask route](#only-one-flask-route)
-- [Running without Flask](#running-without-flask)
-- [Undeploying](#undeploying)
-- [Credits](#credits)
-- [If this does not work](#if-this-does-not-work)
+- [Первый запуск](#usage)
+- [Просмотр логов](#logs)
+- [Ограничения](#limitations)
+    - [Ограничения Яндекса](#yandex-quotes-and-limitations)
+    - [Только один роут Flask](#only-one-flask-route)
+- [Разработка навыков Алисы](#running-without-flask)
+- [Удаление приложения](#undeploying)
+- [Благодарности](#credits)
+- [Если что-то не работает](#if-this-does-not-work)
 
 
-## Usage
+## Первый запуск
 
 
-### 1. Configure CLIs
+### 1. Настраиваем CLI
 
-- Install and configure [Yandex CLI](https://cloud.yandex.ru/docs/cli/quickstart)
-- Install and configure [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+Для начала нужно скачать и настроить два CLI: яндексовский и амазоновский.
+
+- Настраиваем [Yandex CLI](https://cloud.yandex.ru/docs/cli/quickstart)
+- Настраиваем [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 
 
-### 2. Install yappa & flask
+### 2. Ставим yappa и flask
 
 ```
 pip install yappa
@@ -42,7 +39,7 @@ pip install flask
 ```
 
 
-### 3. Create an app
+### 3. Создаем Flask-приложение
 
 
 ```python
@@ -59,25 +56,31 @@ def main():
 
 ```
 
-### 4. Generate requirements:
+### 4. Фиксируем requirements
 ```
 pip freeze > requirements.txt
 ```
 
-### 5. Deploy
+### 5. Деплоим
 
-Initialize Yappa:
+Инициализация и создание конфиг-файла:
 
 ```
 yappa init
 ```
 
-Deploy:
+Деплой:
 ```
 yappa deploy
 ```
 
-After first deploy, you can update your function with:
+
+## Использование
+
+
+### Обновление функции
+
+После первого деплоя обновление функции выполняется командой:
 
  
 ```
@@ -85,16 +88,16 @@ yappa update
 ```
 
 
-## Logs
 
-Just run: 
+### Просмотр логов
+
 
 ```
 yappa logs
 ```
 
-You can use `--since` and `--until` flags ([syntax here](https://cloud.yandex.ru/docs/functions/operations/function/function-logs)). 
-For example, to display logs for the last minute:
+Команда принимает два необязательных параметра `--since` и `--until` ([синтаксис см. здесь](https://cloud.yandex.ru/docs/functions/operations/function/function-logs)). 
+Например, так можно просмотреть логи за последнюю минуту:
 
 ```
 yappa logs --since 1m
@@ -102,22 +105,45 @@ yappa logs --since 1m
 ```
 
 
-## Limitations
+### Удаление функции
 
-### Yandex quotes and limitations
-You cannot have more than 10 functions in one cloud. [More info here](https://cloud.yandex.ru/docs/functions/concepts/limits)
 
-### Only one Flask route
+```
+yappa undeploy
+```
 
-Because Yandex Cloud Functions do not have the concept of URL routes,
-Your Flask app can only have **one route**:
+Это удалит функцию из YCF.
+
+
+## Ограничения
+
+### Ограничения яндекса
+В одном облаке не может быть более 10 функций. ([Подробности здесь](https://cloud.yandex.ru/docs/functions/concepts/limits))
+
+### Только один роут Flask
+
+Единственный URL, который может быть у приложения, выглядит так:
+
+```
+https://functions.yandexcloud.net/xxxxxx
+```
+
+В отличие от AWS Lambda, здесь нет возможности создавать роуты, например:
+
+```
+https://functions.yandexcloud.net/xxxxxx/dashboard
+https://functions.yandexcloud.net/xxxxxx/users
+```
+
+
+Поэтому единственный роут, который может быть у вашего Flask-приложения, - это `/`:
 
 ```python
 @app.route('/', methods=[...])
 
 ```
 
-and all the routing should be done with **GET parameters**:
+И весь роутинг внутри приложения необходимо делать на **GET-параметрах**:
 
 
 ```python
@@ -135,28 +161,45 @@ def main:
 ```
 
 
-## Running without Flask
+## Разработка навыков для Алисы
 
-Your app **doesn't have to be a Flask app!**
-Yappa can deploy plain python handlers as per [YCF docs](https://cloud.yandex.ru/docs/functions/quickstart/function-quickstart#python-func):
+Yappa позволяет деплоить можно не только Flask-приложения, но и обычные функции 
+из [документации](https://cloud.yandex.ru/docs/functions/quickstart/function-quickstart#python-func).  
+
+Именно такие функции и используются в Алисе. 
+
+Для создания навыка Алисы можно написать такую функцию:
 
 ```python
 def handler(event, context):
-    name = 'World'
-    if 'queryStringParameters' in event and 'name' in event['queryStringParameters']:
-        name = event['queryStringParameters']['name']
-
+    """
+    Entry-point for Serverless Function.
+    :param event: request payload.
+    :param context: information about current execution context.
+    :return: response to be serialized as JSON.
+    """
+    text = 'Hello! I\'ll repeat anything you say to me.'
+    if 'request' in event and \
+            'original_utterance' in event['request'] \
+            and len(event['request']['original_utterance']) > 0:
+        text = event['request']['original_utterance']
     return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'text/plain'
+        'version': event['version'],
+        'session': event['session'],
+        'response': {
+            # Respond with the original request or welcome the user if this is the beginning of the dialog and the request has not yet been made.
+            'text': text,
+            # Don't finish the session after this response.
+            'end_session': 'false'
         },
-        'isBase64Encoded': False,
-        'body': 'Hello, {}!'.format(name)
     }
 ```
 
-In this case, point your `entrypoint` in `yappa-settings.json` to this handler, for example:
+и деплоить его точно так же командами `yappa init` / `yappa deploy`.
+
+При деплое функции, а не Flask-приложения, 
+необходимо изменить файл `yappa-settings.json` так, чтобы поле `entrypoint` указывало на эту функцию, например: 
+
 
 ```
 {
@@ -168,24 +211,14 @@ In this case, point your `entrypoint` in `yappa-settings.json` to this handler, 
 
 ```
 
-## Undeploying
-
-Just run:
-```
-yappa undeploy
-```
-
-and your cloud function will be deleted from YCF.
-
-## Credits
-
-Much of the code is ~~stolen from~~ inspired 
-by the [Flask-Lambda](https://github.com/techjacker/flask-lambda) package 
-and the awesome [Zappa](https://github.com/Miserlou/Zappa) project (hence the weird name **yappa**).
-
-The rest is just adapters for YCF quirks.
 
 
-## If this does not work
+## Благодарности
 
-The project is in its early stages, and it was only tested on Mac OS. If it does not run on Windows/Linux - PRs are welcome.
+Проект представляет собой смесь [Flask-Lambda](https://github.com/techjacker/flask-lambda) 
+и [Zappa](https://github.com/Miserlou/Zappa), адаптированных под особенности YCF.
+
+
+## Если что-то не работает
+
+Проект тестировался только по Mac OS. Если что-то не работает под Windows/Linux - присылайте PR.
