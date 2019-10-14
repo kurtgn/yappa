@@ -77,7 +77,7 @@ yappa deploy
 ```
 
 **Профит!** Яндекс выдаст URL вида
-`https://functions.yandexcloud.net/xxxxx`, на котором будет работать ваша функция.
+`https://functions.yandexcloud.net/xxxxx`, на котором будет работать наша функция.
 
 
 ## Использование
