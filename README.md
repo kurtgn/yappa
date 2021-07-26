@@ -2,6 +2,8 @@
 
 # ⚠️ 26.07.2021: Актуальная версия проекта - в форке https://github.com/turokg/yappa
 
+---
+
 Деплоим Python в [Yandex Cloud Functions](https://cloud.yandex.ru/services/functions) легко и быстро.
 
 <img src="ycf_logo.jpg" width="300" height="300">
